@@ -1,4 +1,4 @@
-#define NUM_ATTRS 20
-#define NUM_EXAMPLES 100
-#define NUM_PAIRS 40
+#define NUM_ATTRS 10000
+#define NUM_EXAMPLES 5000
+#define NUM_PAIRS 100
 #define NUM_NEIGHBORS 5

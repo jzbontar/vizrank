@@ -28,7 +28,6 @@ int main(void)
 	for (p = 0; p < NUM_PAIRS; p++) {
 		attr1 = P[p * 2];
 		attr2 = P[p * 2 + 1];
-
 		score = 0;
 		for (i = 0; i < NUM_EXAMPLES; i++) {
 			for (k = 0; k < NUM_NEIGHBORS; k++) {
@@ -59,6 +58,5 @@ int main(void)
 		}
 		printf("%d %d %d\n", attr1, attr2, score);
 	}
-
 	return 0;
 }
