@@ -1,6 +1,15 @@
 VizRank CPU vs. GPU benchmark
 =============================
 
+We wish to measure the runtime of various implementations of the VizRank algorithm.
+
+Competing Implementations
+-------------------------
+
+- main.py: Python reference implementation. This is extremely slow and does not appear on the graphs.
+- main.c: C implementation running on one core.
+- main.cu: CUDA implementation parallelized over pairs of attribute (first loop in pseudocode). 
+
 VizRank Algorithm
 -----------------
 
