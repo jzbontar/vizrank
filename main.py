@@ -3,10 +3,8 @@
 import numpy as np
 import sys
 
-NUM_ATTRS = 20
-NUM_EXAMPLES = 100
-NUM_PAIRS = 40
-NUM_NEIGHBORS = 5
+# grab definitions from extern.h
+exec(open('extern.h').read().replace('#define ','').replace(' ', ' = '))
 
 # generate data
 if 'data' in sys.argv:
@@ -33,7 +31,7 @@ P = np.memmap('data/P.bin', dtype=np.int32, mode='r', shape=(NUM_PAIRS, 2))
 
 D = np.empty((NUM_NEIGHBORS, 2), dtype=np.float32)
 for attr1, attr2 in P:
-    acc = 0
+    score = 0
     for i in range(NUM_EXAMPLES):
         for k in range(NUM_NEIGHBORS):
             D[k, 0] = 2e38
@@ -49,5 +47,5 @@ for attr1, attr2 in P:
                     D[max_k, 1] = Y[j]
         for k in range(NUM_NEIGHBORS):
             if Y[i] == D[k, 1]:
-                acc += 1
-    print attr1, attr2, acc
+                score += 1
+    print attr1, attr2, score
