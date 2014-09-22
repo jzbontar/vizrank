@@ -1,3 +1,5 @@
+all: main_c main_cu
+
 main_c: main.c extern.h
 	gcc -Wall -O3 -lm main.c -o main_c
 

@@ -62,7 +62,7 @@ int main(void)
 				}
 			}
 		}
-		printf("%d %d %d\n", attr1, attr2, score);
+		printf("%d\n", score);
 	}
 	return 0;
 }
