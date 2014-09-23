@@ -6,30 +6,21 @@ We measure the runtime of two implementations of the VizRank algorithm:
 - a single core CPU implementation written in C
 - a GPU implementation written in CUDA
 
-We found the GPU implementation is up to 100 times faster than the CPU
-implementation on our machine, depending on the parameters (sizo of the dataset
-and number of attribute pairs to score).
-
-Competing implementations
--------------------------
-
-- main.py: Python reference implementation. This is extremely slow and does not appear on the graphs.
-- main.c: C implementation running on one core.
-- main.cu: CUDA implementation parallelized over pairs of attribute (first loop in pseudocode). 
-
-The outputs of all three implementations are identical.
+We found the GPU implementation to be up to 100 times faster than the CPU
+implementation, depending on the parameters (size of the dataset and number of
+attribute pairs to score).
 
 VizRank algorithm
 -----------------
 
 Input:
-- X: NUM_EXAMPLES x NUM_ATTRS matrix; dataset
-- Y: NUM_EXAMPLES vector; labels
+- X: NUM_EXAMPLES x NUM_ATTRS matrix; the dataset
+- Y: NUM_EXAMPLES vector; the class labels
 - P: NUM_PAIRS x 2 matrix; pairs of attributes to score
-- NUM_NEIGHBORS: int; number of neighbors in kNN algorithm
+- NUM_NEIGHBORS: int; the number of neighbors in kNN algorithm
 
 Output:
-- S: NUM_PAIRS vector; VizRank score for each pair in P
+- S: NUM_PAIRS vector; the VizRank score for each pair in P
 
 Psedocode:
 
@@ -41,7 +32,16 @@ Psedocode:
                         when taking only attr1 and attr2 under consideration
             score += number of neighbors with same class label as example i
         S.append(score)
-        
+
+Files
+-----
+
+- main.py: Python reference implementation. This is extremely slow and does not appear on the graphs.
+- main.c: C implementation running on one core.
+- main.cu: CUDA implementation parallelized over pairs of attribute (first loop in pseudocode). 
+
+The outputs of all three implementations are identical.
+
 Results
 -------
 

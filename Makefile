@@ -7,4 +7,4 @@ main_cu: main.cu extern.h
 	nvcc main.cu -o main_cu
 
 clean:
-	rm -f main_c
+	rm -f main_c main_cu
