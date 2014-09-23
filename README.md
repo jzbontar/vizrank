@@ -1,7 +1,8 @@
 VizRank CPU vs. GPU benchmark
 =============================
 
-We wish to measure the runtime of various implementations of the VizRank algorithm.
+We wish to measure the runtime of various implementations of the VizRank
+algorithm.  The benchmark is performed on a i7 3770 CPU and GTX Titan GPU.
 
 Competing Implementations
 -------------------------
@@ -33,4 +34,15 @@ Psedocode:
             score += number of neighbors with same class label as example i
         S.append(score)
         
-        
+Results
+-------
+
+We plot CPU and GPU runtimes when we vary the number of attribute pairs to
+score. The GPU implementation is roughly 25 times faster.
+
+	NUM_ATTRS = 1000
+	NUM_EXAMPLES = 1000
+	NUM_NEIGHBORS = 5
+	NUM_PAIRS = 1000 .. 30000
+
+![Attribute pairs](img/pairs.png)
