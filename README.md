@@ -6,7 +6,7 @@ We measure the runtime of two implementations of the VizRank algorithm:
 - a single core CPU implementation written in C
 - a GPU implementation written in CUDA
 
-We found the GPU implementation is up to 35 times faster than the CPU
+We found the GPU implementation is up to 100 times faster than the CPU
 implementation on our machine, depending on the parameters (sizo of the dataset
 and number of attribute pairs to score).
 
@@ -45,12 +45,14 @@ Psedocode:
 Results
 -------
 
-The benchmark is performed on a i7 3770 CPU and GTX Titan GPU.
+The benchmark is performed on a i7 3770 CPU and GTX Titan GPU. We are measuring
+the execution time of the entire program, which includes loading the data into
+CPU and GPU memory.
 
 ### Number of attribute pairs ###
 
 We first plot CPU and GPU runtimes while varying the number of attribute pairs
-to score. The GPU implementation is roughly 25 times faster.
+to score. The GPU implementation is up to 25 times faster.
 
 	NUM_ATTRS = 1000
 	NUM_EXAMPLES = 1000
@@ -69,5 +71,16 @@ dataset.  The GPU implementation is up to 35 times faster.
 	NUM_NEIGHBORS = 5
 	NUM_PAIRS = 20000
 
-![Attribute pairs](img/examples.png)
+![Examples](img/examples.png)
 
+### Number of nearest neighbors ###
+
+Lastly, we plot CPU and GPU runtimes while varying the number of nearest neighbors.
+The GPU implementation is from 20 to 100 times faster.
+
+	NUM_ATTRS = 1000
+	NUM_EXAMPLES = 2000
+	NUM_NEIGHBORS = 1 .. 9
+	NUM_PAIRS = 20000
+
+![Neighbors](img/neighbors.png)
