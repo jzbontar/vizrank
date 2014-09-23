@@ -1,17 +1,25 @@
 VizRank CPU vs. GPU benchmark
 =============================
 
-We wish to measure the runtime of various implementations of the VizRank
-algorithm.  The benchmark is performed on a i7 3770 CPU and GTX Titan GPU.
+We measure the runtime of two implementations of the VizRank algorithm:
 
-Competing Implementations
+- a single core CPU implementation written in C
+- a GPU implementation written in CUDA
+
+We found the GPU implementation is up to 35 times faster than the CPU
+implementation on our machine, depending on the parameters (sizo of the dataset
+and number of attribute pairs to score).
+
+Competing implementations
 -------------------------
 
 - main.py: Python reference implementation. This is extremely slow and does not appear on the graphs.
 - main.c: C implementation running on one core.
 - main.cu: CUDA implementation parallelized over pairs of attribute (first loop in pseudocode). 
 
-VizRank Algorithm
+The outputs of all three implementations are identical.
+
+VizRank algorithm
 -----------------
 
 Input:
@@ -37,8 +45,12 @@ Psedocode:
 Results
 -------
 
-We plot CPU and GPU runtimes when we vary the number of attribute pairs to
-score. The GPU implementation is roughly 25 times faster.
+The benchmark is performed on a i7 3770 CPU and GTX Titan GPU.
+
+### Number of attribute pairs ###
+
+We first plot CPU and GPU runtimes while varying the number of attribute pairs
+to score. The GPU implementation is roughly 25 times faster.
 
 	NUM_ATTRS = 1000
 	NUM_EXAMPLES = 1000
@@ -46,3 +58,16 @@ score. The GPU implementation is roughly 25 times faster.
 	NUM_PAIRS = 1000 .. 30000
 
 ![Attribute pairs](img/pairs.png)
+
+### Number of examples ###
+
+Here we plot CPU and GPU runtimes while varying the number of examples in the
+dataset.  The GPU implementation is up to 35 times faster.
+
+	NUM_ATTRS = 1000
+	NUM_EXAMPLES = 100 .. 3000
+	NUM_NEIGHBORS = 5
+	NUM_PAIRS = 20000
+
+![Attribute pairs](img/examples.png)
+
